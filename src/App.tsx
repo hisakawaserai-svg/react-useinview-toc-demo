@@ -10,7 +10,7 @@ type Mode = 'A' | 'B' | 'C';
 const SECTIONS = ['history', 'apps', 'about'] as const;
 const SectionMap = new Map<string, number> (
   SECTIONS.map((item, index) => [item, index])
-)
+);
 
 const COLORS = ['#fde68a', '#bfdbfe', '#bbf7d0'];
 
@@ -169,7 +169,7 @@ export default function App() {
         </main>
       </div>
 
-      {/* 監視領域の可視化（表示のみ。rootMargin はビューポート基準） */}
+      {/* 監視範囲の可視化（表示のみ。rootMargin はビューポート基準） */}
       <div
         style={{
           position: 'fixed', left: NAV_W, right: 0, top: isFull ? 0 : '40%', bottom: isFull ? 0 : '40%', zIndex: 5,
@@ -183,7 +183,7 @@ export default function App() {
             fontFamily: MONO, fontSize: 13, background: '#fafaf8', padding: '2px 8px',
           }}
         >
-          監視領域 rootMargin {MODES[mode].rootMargin}
+          監視範囲 rootMargin {MODES[mode].rootMargin}
         </span>
       </div>
     </>
