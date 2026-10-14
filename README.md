@@ -5,7 +5,7 @@
 ## Demo
 
 - **Live Demo:** https://hisakawaserai-svg.github.io/react-useinview-toc-demo/
-- **Qiita Article:** [Qiita記事のURLを記載]
+- **Qiita Article:** https://qiita.com/Serai/items/2dfd54817be60a7750c5
 
 ## Overview
 
