@@ -7,6 +7,8 @@ import { useInView } from 'react-intersection-observer';
 //  C: true/false 両方を報告し、親が一覧を持つ   → 直った版
 type Mode = 'A' | 'B' | 'C';
 
+const NOT_FOUND = 3;
+
 const SECTIONS = ['history', 'apps', 'about'] as const;
 const SectionMap = new Map<string, number> (
   SECTIONS.map((item, index) => [item, index])
@@ -60,16 +62,16 @@ function Section({ id, color, mode, onInView }: SectionProps) {
       </div>
     </section>
   );
-}
+};
 
 const sortSections = (sections: string[]): string[] => {
   return [...sections].sort((a, b) => {
-    const itemA = SectionMap.get(a) ?? 4;
-    const itemB = SectionMap.get(b) ?? 4;
+    const itemA = SectionMap.get(a) ?? NOT_FOUND;
+    const itemB = SectionMap.get(b) ?? NOT_FOUND;
 
     return itemA - itemB;
-  })
-}
+  });
+};
 
 export default function App() {
   const [mode, setMode] = useState<Mode>('A');
