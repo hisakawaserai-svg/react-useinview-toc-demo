@@ -55,7 +55,7 @@ function Section({ id, color, mode, onInView }: SectionProps) {
   });
 
   return (
-    <section id={id} style={{ background: color, margin: 0, scrollMarginTop: HEADER_H }}>
+    <section id={id} className="app-section" style={{ background: color, margin: 0, scrollMarginTop: HEADER_H }}>
       {/* 高さは画面より大きくする（収まらないセクションの再現） */}
       <div ref={ref} style={{ height: '130vh', padding: 24, fontSize: 28, fontWeight: 500, boxSizing: 'border-box' }}>
         {id}
@@ -108,17 +108,18 @@ export default function App() {
   return (
     <>
       <div
+        className="app-header"
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, height: HEADER_H, boxSizing: 'border-box',
           background: '#fafaf8', color: '#1a1a1a', padding: '18px 24px',
           borderBottom: '1px solid #e2e0db', display: 'flex', flexDirection: 'column', gap: 12,
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16 }}>
+        <div className="app-header-top" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16 }}>
           <div style={{ fontFamily: MONO, fontSize: 16, fontWeight: 600, whiteSpace: 'nowrap' }}>useInView repro</div>
           <div style={{ fontSize: 14, color: '#6b6964' }}>{DESC[mode]}</div>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div className="app-modes" style={{ display: 'flex', flexWrap: 'wrap' }}>
           {(Object.keys(MODES) as Mode[]).map((m) => (
             <button
               key={m}
@@ -134,14 +135,15 @@ export default function App() {
             </button>
           ))}
         </div>
-        <div style={{ fontFamily: MONO, fontSize: 17, display: 'flex', gap: 28, whiteSpace: 'nowrap' }}>
+        <div className="app-status" style={{ fontFamily: MONO, fontSize: 17, display: 'flex', gap: 28, whiteSpace: 'nowrap' }}>
           <span>現在地: <b>{currentId}</b></span>
           <span style={{ color: '#6b6964' }}>見えている: [{visible.join(', ')}]</span>
         </div>
       </div>
 
-      <div style={{ display: 'flex', paddingTop: HEADER_H }}>
+      <div className="app-body" style={{ display: 'flex', paddingTop: HEADER_H }}>
         <nav
+          className="app-nav"
           style={{
             position: 'sticky', top: HEADER_H, alignSelf: 'flex-start', height: `calc(100vh - ${HEADER_H}px)`,
             width: NAV_W, flexShrink: 0, padding: 24, boxSizing: 'border-box',
@@ -173,6 +175,7 @@ export default function App() {
 
       {/* 監視範囲の可視化（表示のみ。rootMargin はビューポート基準） */}
       <div
+        className="app-range"
         style={{
           position: 'fixed', left: NAV_W, right: 0, top: isFull ? 0 : '40%', bottom: isFull ? 0 : '40%', zIndex: 5,
           borderTop: '1px dashed #1a1a1a', borderBottom: '1px dashed #1a1a1a',
@@ -180,6 +183,7 @@ export default function App() {
         }}
       >
         <span
+          className={isFull ? 'app-range-label app-range-label-full' : 'app-range-label'}
           style={{
             position: 'absolute', right: 8, top: isFull ? HEADER_H + 6 : 6, whiteSpace: 'nowrap',
             fontFamily: MONO, fontSize: 13, background: '#fafaf8', padding: '2px 8px',
